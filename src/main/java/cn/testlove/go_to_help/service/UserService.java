@@ -1,5 +1,6 @@
 package cn.testlove.go_to_help.service;
 
+import cn.testlove.go_to_help.entity.User;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,4 +10,5 @@ import org.springframework.stereotype.Service;
  * @Description: null
  */
 public interface UserService {
+    int updateUserByOpenId(User user);
 }

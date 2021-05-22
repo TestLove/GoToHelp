@@ -7,4 +7,5 @@ package cn.testlove.go_to_help.entity;
  * @Description: null
  */
 public class PostFile {
+
 }

@@ -7,4 +7,5 @@ package cn.testlove.go_to_help.mapper;
  * @Description: null
  */
 public interface PostMapper {
+    int insertPostId();
 }

@@ -5,6 +5,16 @@
 
 <mapper namespace="cn.testlove.go_to_help.mapper.UserMapper">
 
+    <select id="findUserByOpenID" resultType="cn.testlove.go_to_help.entity.User">
+        select * from user where openId=#{openId}
+    </select>
+    <insert id="addUser" parameterType="cn.testlove.go_to_help.entity.User">
+        insert into user(openId,sessionKey,token,admin)
+        values (#{openId},#{sessionKey},#{token},#{admin})
+    </insert>
+    <update id="updateUserByOpenId" parameterType="cn.testlove.go_to_help.entity.User">
+
+    </update>
 
 
 </mapper>
