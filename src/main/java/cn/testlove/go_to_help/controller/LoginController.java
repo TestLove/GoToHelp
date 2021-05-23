@@ -19,18 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
     @Autowired
     LoginService loginService;
-    @ApiOperation("登陆接口")
+    @ApiOperation("acquire accessToken(as the credential to visit the resources)")
     @PostMapping("/public/login")
     public Response login(String appId, String secret, String jsCode){
-       if(appId.length()==1){
-           throw new BadTokenException("token错误");
-       }
         return loginService.login(appId, secret, jsCode);
     }
-    @ApiOperation("注销接口")
+    @ApiOperation("logout")
     @PostMapping("/private/logout")
-    public Response logout(){
-
+    public Response logout(Integer userId){
+        loginService.logout(userId);
         return ResponseUtils.success();
     }
 

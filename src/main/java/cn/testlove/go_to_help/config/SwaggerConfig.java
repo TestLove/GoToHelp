@@ -17,6 +17,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * @author TestLove
  * @version 1.0
@@ -33,7 +35,8 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("cn.testlove.go_to_help.controller"))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .build();
+                .build().securitySchemes(securitySchemes())
+                .securityContexts(securityContexts());
     }
 
     /**
@@ -42,10 +45,25 @@ public class SwaggerConfig {
      */
     public ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("接口管理平台")
-                .description("接口管理及测试")
+                .title("interface manage platform")
+                .description("GO TO HELP")
                 .version("v1.0")
                 .build();
+    }
+    public List<ApiKey> securitySchemes() {
+        return newArrayList(new ApiKey("token", "token", "header"));
+    }
+
+    public List<SecurityContext> securityContexts() {
+        return newArrayList(SecurityContext.builder().securityReferences(defaultAuth())
+                .forPaths(PathSelectors.regex("^(?!auth).*$")).build());
+    }
+
+    List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return newArrayList(new SecurityReference("token", authorizationScopes));
     }
 
 

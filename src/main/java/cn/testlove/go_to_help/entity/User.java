@@ -1,5 +1,6 @@
 package cn.testlove.go_to_help.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 /**
@@ -13,9 +14,11 @@ public class User {
     Integer userId;
     String userName;
     String avatar;
+    @JsonIgnore
     Integer admin;
     String openId;
     String sessionKey;
+    @JsonIgnore
     String token;
 
 

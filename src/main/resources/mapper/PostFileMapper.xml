@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.testlove.go_to_help.mapper.PostFileMapper">
+    <insert id="insertFile" parameterType="cn.testlove.go_to_help.entity.PostFile">
+        insert into postFile(postId, fileUrl, active, filePath)
+        values (#{postId},#{fileUrl},#{active},#{filePath})
+    </insert>
+    <select id="selectFile" resultType="cn.testlove.go_to_help.entity.PostFile">
+        select * from postFile where active=1 and postId=#{postId}
+    </select>
+
+</mapper>
