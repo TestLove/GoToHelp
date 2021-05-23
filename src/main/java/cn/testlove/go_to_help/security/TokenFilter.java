@@ -16,7 +16,7 @@ import java.io.IOException;
  * @date 2021/5/22 15:27
  * @Description: null
  */
-@WebFilter(urlPatterns = "/private/*",filterName = "tokenFilter")
+@WebFilter(urlPatterns = "/*",filterName = "charsetFilter")
 public class TokenFilter implements Filter {
 
     @Override
@@ -28,12 +28,13 @@ public class TokenFilter implements Filter {
 ////           throw new BadTokenException("token错误");
 //        }
         HttpServletResponse res = (HttpServletResponse) response;
- res.addHeader("Access-Control-Allow-Credentials", "true");
-res.addHeader("Access-Control-Allow-Origin", "*");
-res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
- res.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
+    res.addHeader("Access-Control-Allow-Credentials", "true");
+    res.addHeader("Access-Control-Allow-Origin", "*");
+    res.addHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    res.addHeader("Access-Control-Allow-Headers", "Content-Type,X-CAF-Authorization-Token,sessionToken,X-TOKEN");
 
-
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         chain.doFilter(request, response);
     }
 

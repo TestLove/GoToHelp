@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/private")
 public class UserController {
-    @ApiOperation("更新用户信息")
+    @ApiOperation("update user information")
     @PostMapping("/updateUserInfo")
     public Response updateUserInfo(@RequestBody User user){
         return ResponseUtils.success();

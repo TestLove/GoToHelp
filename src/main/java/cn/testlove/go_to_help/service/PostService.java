@@ -1,6 +1,7 @@
 package cn.testlove.go_to_help.service;
 
 import cn.testlove.go_to_help.entity.Post;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author TestLove
@@ -9,5 +10,5 @@ import cn.testlove.go_to_help.entity.Post;
  * @Description: null
  */
 public interface PostService {
-    int insertPost(Post post);
+    int insertPost(Post post, MultipartFile[] files);
 }

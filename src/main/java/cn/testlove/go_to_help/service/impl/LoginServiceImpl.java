@@ -23,6 +23,15 @@ import java.util.HashMap;
 public class LoginServiceImpl implements LoginService {
     @Autowired
     UserMapper userMapper;
+
+    /**
+     * 如果用户不存在,自动注册再返回token
+     * 存在,直接返回token
+     * @param appId
+     * @param secret
+     * @param jsCode
+     * @return
+     */
     @Override
     public Response login(String appId, String secret, String jsCode) {
         JSONObject info = WeChatUtils.getWeChatAccessToken(appId, secret, jsCode);
@@ -48,5 +57,10 @@ public class LoginServiceImpl implements LoginService {
         userMapper.updateUserByOpenId(user);
         return ResponseUtils.success(map);
 
+    }
+
+    @Override
+    public Response logout(Integer userId) {
+        return null;
     }
 }

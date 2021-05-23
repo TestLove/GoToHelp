@@ -2,10 +2,12 @@ package cn.testlove.go_to_help.controller;
 
 import cn.testlove.go_to_help.entity.Post;
 import cn.testlove.go_to_help.entity.Response;
+import cn.testlove.go_to_help.service.PostService;
 import cn.testlove.go_to_help.utils.ResponseUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author TestLove
@@ -16,8 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/private")
 public class PostController {
+    @Autowired
+    PostService postService;
+    @ApiOperation("upload the post")
     @PostMapping("/addPost")
-    public Response insertPost(Post post){
+    public Response insertPost(@ModelAttribute Post post, MultipartFile[] files){
+        postService.insertPost(post,files);
+        return ResponseUtils.success();
+    }
+    @ApiOperation("select all post from database")
+    @GetMapping("/selectAllPost")
+    public Response selectAllPost(){
+        return ResponseUtils.success();
+    }
+    @ApiOperation("update one post (only support text)")
+    @GetMapping("/updatePost")
+    public Response updatePost(@RequestBody Post post){
         return ResponseUtils.success();
     }
 }

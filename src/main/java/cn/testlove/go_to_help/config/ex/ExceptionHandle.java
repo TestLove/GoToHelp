@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Component
 @RestControllerAdvice
 public class ExceptionHandle {
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(BadTokenException.class)
     public Response badToken(Exception e){
         return ResponseUtils.failure(e.getMessage());
     }
