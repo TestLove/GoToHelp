@@ -26,7 +26,7 @@ public interface PostFileMapper {
      * @param postId
      * @return
      */
-    List<PostFile> selectFile(int postId);
+    List<String> selectFile(int postId);
 
 
 }

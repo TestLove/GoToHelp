@@ -1,7 +1,10 @@
 package cn.testlove.go_to_help.mapper;
 
 import cn.testlove.go_to_help.entity.Post;
+import cn.testlove.go_to_help.entity.PostVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @author TestLove
@@ -24,4 +27,5 @@ public interface PostMapper {
      * @return
      */
     int selectPostIdByPostId(Post post);
+    List<PostVO> selectAllPost();
 }

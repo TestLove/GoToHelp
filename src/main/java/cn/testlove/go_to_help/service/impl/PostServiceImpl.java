@@ -2,6 +2,7 @@ package cn.testlove.go_to_help.service.impl;
 
 import cn.testlove.go_to_help.entity.Post;
 import cn.testlove.go_to_help.entity.PostFile;
+import cn.testlove.go_to_help.entity.PostVO;
 import cn.testlove.go_to_help.mapper.PostFileMapper;
 import cn.testlove.go_to_help.mapper.PostMapper;
 import cn.testlove.go_to_help.mapper.UserMapper;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author TestLove
@@ -44,5 +47,15 @@ public class PostServiceImpl implements PostService {
         }
 
         return 0;
+    }
+
+    @Override
+    public List<PostVO> selectAllPost() {
+        HashMap<Object, Object> map = new HashMap<>();
+        List<PostVO> posts = postMapper.selectAllPost();
+        for (PostVO post : posts) {
+            post.setFileUrl(postFileMapper.selectFile(post.getPostId()));
+        }
+        return posts;
     }
 }

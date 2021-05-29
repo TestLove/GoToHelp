@@ -16,7 +16,7 @@ import java.io.IOException;
  * @date 2021/5/22 15:27
  * @Description: null
  */
-@WebFilter(urlPatterns = "/*",filterName = "charsetFilter")
+//@WebFilter(urlPatterns = "/*",filterName = "charsetFilter")
 public class TokenFilter implements Filter {
 
     @Override

@@ -8,8 +8,8 @@
         insert into postFile(postId, fileUrl, active, filePath)
         values (#{postId},#{fileUrl},#{active},#{filePath})
     </insert>
-    <select id="selectFile" resultType="cn.testlove.go_to_help.entity.PostFile">
-        select * from postFile where active=1 and postId=#{postId}
+    <select id="selectFile" resultType="java.lang.String">
+        select fileUrl from postFile where active=1 and postId=#{postId}
     </select>
 
 </mapper>

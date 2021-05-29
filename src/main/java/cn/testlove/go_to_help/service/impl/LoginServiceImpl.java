@@ -9,6 +9,7 @@ import cn.testlove.go_to_help.utils.WeChatUtils;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -33,11 +34,16 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     @Override
-    public Response login(String appId, String secret, String jsCode) {
-        JSONObject info = WeChatUtils.getWeChatAccessToken(appId, secret, jsCode);
+    @Transactional(rollbackFor = Exception.class)
+    public Response login(String jsCode) {
+        JSONObject info = WeChatUtils.getWeChatAccessToken(jsCode);
+        if (info == null) {
+            return ResponseUtils.failure("the request failed");
+        }
+
         String errCode = info.getString("errcode");
         String errMsg = info.getString("errmsg");
-        if (!errCode.equals("0")) {
+        if (errMsg!=null&&!errMsg.equals("login:ok")) {
             return ResponseUtils.failure(errMsg);
         }
         String openId = info.getString("openid");

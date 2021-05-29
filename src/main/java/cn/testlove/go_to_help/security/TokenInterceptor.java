@@ -19,7 +19,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String token = httpServletRequest.getHeader("token");
         if (token == null || token.length() == 0) {
-           throw new BadTokenException("token错误");
+           throw new BadTokenException("token error");
         }
         return true;
     }

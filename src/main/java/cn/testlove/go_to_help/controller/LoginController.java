@@ -6,8 +6,7 @@ import cn.testlove.go_to_help.service.LoginService;
 import cn.testlove.go_to_help.utils.ResponseUtils;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author TestLove
@@ -21,8 +20,8 @@ public class LoginController {
     LoginService loginService;
     @ApiOperation("acquire accessToken(as the credential to visit the resources)")
     @PostMapping("/public/login")
-    public Response login(String appId, String secret, String jsCode){
-        return loginService.login(appId, secret, jsCode);
+    public Response login(String jsCode){
+        return loginService.login(jsCode);
     }
     @ApiOperation("logout")
     @PostMapping("/private/logout")

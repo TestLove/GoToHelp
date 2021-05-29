@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
+
 /**
  * @author TestLove
  * @version 1.0
@@ -29,7 +31,9 @@ public class PostController {
     @ApiOperation("select all post from database")
     @GetMapping("/selectAllPost")
     public Response selectAllPost(){
-        return ResponseUtils.success();
+        HashMap<Object, Object> data = new HashMap<>();
+        data.put("data",postService.selectAllPost());
+        return ResponseUtils.success(data);
     }
     @ApiOperation("update one post (only support text)")
     @GetMapping("/updatePost")

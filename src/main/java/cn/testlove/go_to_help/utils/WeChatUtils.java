@@ -6,10 +6,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.URL;
@@ -29,10 +25,13 @@ import java.util.Date;
  */
 @Slf4j
 public class WeChatUtils {
-    public static JSONObject getWeChatAccessToken(String appId, String secret, String jsCode) {
+     static String APP_ID = "wxec80fd3e90c42e10";
+     static String APP_SECRET = "e9da616ce32e4cd8b9560a95d8a37d2e";
+    public static JSONObject getWeChatAccessToken(String jsCode) {
 
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + appId + "&secret=" + secret + "&js_code=" + jsCode + "&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + APP_ID + "&secret=" + APP_SECRET + "&js_code=" + jsCode + "&grant_type=authorization_code";
         String str = httpRequest(url, "GET", null);
+        System.out.println("---------------"+str);
         log.info("api/wx-mini/getSessionKey:" + str);
         if (StringUtils.isEmpty(str)) {
             return null;

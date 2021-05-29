@@ -12,4 +12,7 @@
     from post
     where userId=#{userId} and postTitle = #{postTitle} and postContents=#{postContents}
 </select>
+    <select id="selectAllPost" resultType="cn.testlove.go_to_help.entity.PostVO">
+        select  * from post where `delete`=0 and expired=0
+    </select>
 </mapper>

@@ -22,7 +22,7 @@ public class ResponseUtils {
     public static Response success(HashMap data){
         Response response = new Response();
         response.setErrorCode(0);
-        response.setErrorMessage("执行成功");
+        response.setErrorMessage("success");
         response.setData(data);
         return response;
 
@@ -37,7 +37,7 @@ public class ResponseUtils {
     public static Response failure(HashMap data){
         Response response = new Response();
         response.setErrorCode(0);
-        response.setErrorMessage("执行成功");
+        response.setErrorMessage("error");
         response.setData(data);
         return response;
 

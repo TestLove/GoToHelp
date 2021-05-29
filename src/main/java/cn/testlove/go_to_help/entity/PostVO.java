@@ -7,11 +7,12 @@ import java.util.List;
 /**
  * @author TestLove
  * @version 1.0
- * @date 2021/5/22 12:33
+ * @date 2021/5/29 10:59
  * @Description: null
  */
 @Data
-public class Post {
+public class PostVO {
+    List<String> fileUrl;
     Integer postId;
     Integer userId;
     String postTitle;
@@ -28,6 +29,4 @@ public class Post {
      * 0. 否
      */
     int expired;
-
-
 }
