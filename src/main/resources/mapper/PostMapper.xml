@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.testlove.go_to_help.mapper.PostMapper">
+<insert id="insertPost" parameterType="cn.testlove.go_to_help.entity.Post">
+    insert into post(userId, postTitle, postContents, `delete`, expired)
+    values (#{userId}, #{postTitle}, #{postContents}, #{delete}, #{expired})
+</insert>
+<select id="selectPostIdByPostId" parameterType="cn.testlove.go_to_help.entity.Post" resultType="java.lang.Integer">
+    select distinct postId
+    from post
+    where userId=#{userId} and postTitle = #{postTitle} and postContents=#{postContents}
+</select>
+</mapper>
