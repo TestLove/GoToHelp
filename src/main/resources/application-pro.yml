@@ -1,0 +1,5 @@
+file:
+  map: "/file"
+  upload:
+    path: "/home/gotohelp/file/"
+    ip: http://testlove.cn:8080
