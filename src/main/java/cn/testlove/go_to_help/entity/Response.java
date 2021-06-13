@@ -14,6 +14,6 @@ import java.util.HashMap;
 public class Response {
     int errorCode;
     String errorMessage;
-    HashMap<String, Object> data;
+    Object data;
 
 }

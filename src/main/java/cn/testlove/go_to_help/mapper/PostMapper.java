@@ -3,6 +3,7 @@ package cn.testlove.go_to_help.mapper;
 import cn.testlove.go_to_help.entity.Post;
 import cn.testlove.go_to_help.entity.PostVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,4 +29,15 @@ public interface PostMapper {
      */
     int selectPostIdByPostId(Post post);
     List<PostVO> selectAllPost();
+
+    /**
+     * 根据关键字,用户id,类型寻找帖子
+     * @param keyword
+     * @param userId
+     * @param type
+     * @return
+     */
+    List<PostVO> selectPost(@Param("keyword") String keyword, @Param("userId") Integer userId, @Param("type") String type);
+
+    void deletePost(Integer postId);
 }

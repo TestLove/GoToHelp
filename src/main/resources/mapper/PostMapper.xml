@@ -3,16 +3,29 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.testlove.go_to_help.mapper.PostMapper">
-<insert id="insertPost" parameterType="cn.testlove.go_to_help.entity.Post">
-    insert into post(userId, postTitle, postContents, `delete`, expired)
-    values (#{userId}, #{postTitle}, #{postContents}, #{delete}, #{expired})
+<insert id="insertPost" useGeneratedKeys="true" keyProperty="postId" parameterType="cn.testlove.go_to_help.entity.Post">
+    insert into post(userId, postTitle, postContents, `delete`, expired,type,contact)
+    values (#{userId}, #{postTitle}, #{postContents}, #{delete}, #{expired},#{type},#{contact})
 </insert>
 <select id="selectPostIdByPostId" parameterType="cn.testlove.go_to_help.entity.Post" resultType="java.lang.Integer">
     select distinct postId
     from post
     where userId=#{userId} and postTitle = #{postTitle} and postContents=#{postContents}
+    order by updateTime desc
 </select>
     <select id="selectAllPost" resultType="cn.testlove.go_to_help.entity.PostVO">
         select  * from post where `delete`=0 and expired=0
     </select>
+    <select id="selectPost" resultType="cn.testlove.go_to_help.entity.PostVO">
+        select * from post
+        where
+        <if test="keyword!=null">(postContents like #{keyword} or postTitle like #{keyword}) and </if>
+        <if test="userId!=null">userId=#{userId} and</if>
+        <if test="type!=null">type = #{type} and</if>
+        `delete`=0 and expired=0
+order  by updateTime desc
+    </select>
+    <update id="deletePost" parameterType="java.lang.Integer">
+        update post set `delete`=1 where postId = #{postId}
+    </update>
 </mapper>

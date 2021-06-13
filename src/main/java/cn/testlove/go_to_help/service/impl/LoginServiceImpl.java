@@ -28,8 +28,6 @@ public class LoginServiceImpl implements LoginService {
     /**
      * 如果用户不存在,自动注册再返回token
      * 存在,直接返回token
-     * @param appId
-     * @param secret
      * @param jsCode
      * @return
      */
@@ -58,7 +56,8 @@ public class LoginServiceImpl implements LoginService {
         }
         String token = WeChatUtils.createToken(user);
         HashMap<Object, Object> map = new HashMap<>();
-        map.put("token",token);
+        map.put("token",user.getUserId()+":"+token);
+        map.put("userId",user.getUserId());
         user.setToken(token);
         userMapper.updateUserByOpenId(user);
         return ResponseUtils.success(map);
@@ -67,6 +66,9 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Response logout(Integer userId) {
+        User user = userMapper.findUserByUserId(userId);
+        user.setToken(null);
+        userMapper.updateUserByOpenId(user);
         return null;
     }
 }

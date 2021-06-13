@@ -15,11 +15,11 @@ public class ResponseUtils {
     public static Response success(){
         Response response = new Response();
         response.setErrorCode(0);
-        response.setErrorMessage("执行成功");
+        response.setErrorMessage("success");
         return response;
 
     }
-    public static Response success(HashMap data){
+    public static Response success(Object data){
         Response response = new Response();
         response.setErrorCode(0);
         response.setErrorMessage("success");
@@ -34,9 +34,9 @@ public class ResponseUtils {
         return response;
 
     }
-    public static Response failure(HashMap data){
+    public static Response failure(Object data){
         Response response = new Response();
-        response.setErrorCode(0);
+        response.setErrorCode(1);
         response.setErrorMessage("error");
         response.setData(data);
         return response;

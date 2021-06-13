@@ -9,6 +9,11 @@ import cn.testlove.go_to_help.entity.Response;
  * @Description: null
  */
 public interface LoginService {
+    /**
+     * 登陆接口
+     * @param jsCode
+     * @return
+     */
     public Response login(String jsCode);
     public Response logout(Integer userId);
 }

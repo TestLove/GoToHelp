@@ -40,4 +40,23 @@ public class PostController {
     public Response updatePost(@RequestBody Post post){
         return ResponseUtils.success();
     }
+    @ApiOperation("select specific post from database")
+    @GetMapping("/selectPosts")
+    public Response selectPosts(String keyword,Integer userId,String type){
+        HashMap<Object, Object> data = new HashMap<>();
+        if(keyword!=null){
+            keyword="%"+keyword+"%";
+        }
+        data.put("data",postService.selectPosts(keyword, userId, type));
+        return ResponseUtils.success(data);
+    }
+    @ApiOperation("delete")
+    @GetMapping("/deletePost")
+    public Response selectPosts(Integer postId){
+//        HashMap<Object, Object> data = new HashMap<>();
+//        data.put("data",postService.selectPosts(keyword, userId, type));
+        postService.deletePost(postId);
+        return ResponseUtils.success();
+    }
+
 }

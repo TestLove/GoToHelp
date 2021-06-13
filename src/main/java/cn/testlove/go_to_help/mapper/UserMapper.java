@@ -31,4 +31,5 @@ public interface UserMapper {
      * @return
      */
     int updateUserByOpenId(User user);
+    User findUserByUserId(Integer userId);
 }

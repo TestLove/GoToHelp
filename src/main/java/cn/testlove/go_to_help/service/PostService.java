@@ -20,4 +20,6 @@ public interface PostService {
      * @return
      */
     List<PostVO> selectAllPost();
+    List<PostVO> selectPosts(String keyword,Integer userId,String type);
+    int deletePost(Integer postId);
 }

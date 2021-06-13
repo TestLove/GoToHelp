@@ -37,14 +37,19 @@ public class PostServiceImpl implements PostService {
     public int insertPost(Post post, MultipartFile[] files) {
         log.info(post.toString());
         postMapper.insertPost(post);
-        Integer postId = postMapper.selectPostIdByPostId(post);
-        for (MultipartFile file : files) {
-            PostFile postFile = new PostFile();
-            postFile.setPostId(postId);
-            FileUtils.uploadFile(file,postFile);
-            log.info(postFile.toString());
-            postFileMapper.insertFile(postFile);
+        Integer postId = post.getPostId();
+        System.out.println("postId: "+post.getPostId());
+//        Integer postId = postMapper.selectPostIdByPostId(post);
+        if(files!=null){
+            for (MultipartFile file : files) {
+                PostFile postFile = new PostFile();
+                postFile.setPostId(postId);
+                FileUtils.uploadFile(file,postFile);
+                log.info(postFile.toString());
+                postFileMapper.insertFile(postFile);
+            }
         }
+
 
         return 0;
     }
@@ -57,5 +62,21 @@ public class PostServiceImpl implements PostService {
             post.setFileUrl(postFileMapper.selectFile(post.getPostId()));
         }
         return posts;
+    }
+
+    @Override
+    public List<PostVO> selectPosts(String keyword, Integer userId, String type) {
+        HashMap<Object, Object> map = new HashMap<>();
+        List<PostVO> posts = postMapper.selectPost(keyword, userId, type);
+        for (PostVO post : posts) {
+            post.setFileUrl(postFileMapper.selectFile(post.getPostId()));
+        }
+        return posts;
+    }
+
+    @Override
+    public int deletePost(Integer postId) {
+        postMapper.deletePost(postId);
+        return 0;
     }
 }

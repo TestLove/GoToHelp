@@ -29,6 +29,10 @@ public class LoginController {
         loginService.logout(userId);
         return ResponseUtils.success();
     }
+    @PostMapping("/public/test")
+    public Response test(@RequestParam String c){
+        return ResponseUtils.success(c);
+    }
 
 
 }

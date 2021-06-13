@@ -84,6 +84,10 @@ public class WeChatUtils {
                 .setHeaderParam("type","JWT")
                 .compact();
     }
+    public static Integer getUserId(String token){
+        return Jwts.parser().parseClaimsJws(token).getBody().get("userId",Integer.class);
+
+    }
 
 
 

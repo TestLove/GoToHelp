@@ -29,4 +29,6 @@ public class PostVO {
      * 0. 否
      */
     int expired;
+    String type;
+    String contact;
 }

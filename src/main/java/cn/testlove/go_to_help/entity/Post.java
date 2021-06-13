@@ -28,6 +28,8 @@ public class Post {
      * 0. 否
      */
     int expired;
+    String type;
+    String contact;
 
 
 }

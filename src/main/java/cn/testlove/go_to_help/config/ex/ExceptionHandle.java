@@ -2,6 +2,7 @@ package cn.testlove.go_to_help.config.ex;
 
 import cn.testlove.go_to_help.entity.Response;
 import cn.testlove.go_to_help.utils.ResponseUtils;
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,9 +18,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Component
 @RestControllerAdvice
 public class ExceptionHandle {
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({MalformedJwtException.class,BadTokenException.class})
     public Response badToken(Exception e){
         e.printStackTrace();
-        return ResponseUtils.failure(e.getMessage());
+        return ResponseUtils.failure("token error");
     }
+
 }
